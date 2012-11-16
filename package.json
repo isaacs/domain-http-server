@@ -1,0 +1,32 @@
+{
+  "name": "domain-http-server",
+  "version": "0.0.0",
+  "description": "A module for attaching domains to request and response objects",
+  "main": "domain-http-server.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "tap": "~0.3.2"
+  },
+  "scripts": {
+    "test": "tap test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/isaacs/domain-http-server"
+  },
+  "keywords": [
+    "domains",
+    "request",
+    "response",
+    "middleware",
+    "express",
+    "error",
+    "handling"
+  ],
+  "author": "Isaac Z. Schlueter <i@izs.me> (http://blog.izs.me)",
+  "license": "BSD",
+  "readmeFilename": "README.md"
+}
