@@ -32,8 +32,13 @@ function dhs (req, res, opt, next) {
   if (next)
     next();
 
-  if (opt.enter !== false)
+  if (opt.enter !== false) {
     d.enter();
+    // have to exit on nextTick if no error, or it'll stack up forver.
+    process.nextTick(function() {
+      d.exit();
+    });
+  }
 
   return d;
 }

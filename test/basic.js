@@ -11,6 +11,9 @@ function req (u, t) {
     if (er)
       throw er;
 
+    if (u === 'ok')
+      return ok(res, body, t);
+
     t.equal(res.statusCode, 500, 'status code should be 500');
     t.notOk(process.domain, 'domain should have exited');
 
@@ -20,6 +23,15 @@ function req (u, t) {
       '    at .*' + __filename + ':[0-9]+:[0-9]+\\)\n'));
     t.end();
   });
+}
+
+function ok(res, body, t) {
+  t.equal(res.statusCode, 200, 'status code should be 200');
+  t.notOk(process.domain, 'domain should have exited');
+
+  // the error should reference this file first.
+  t.equal(body, 'ok');
+  t.end();
 }
 
 test('setup', function(t) {
@@ -42,6 +54,8 @@ test('setup', function(t) {
         return process.nextTick(t);
       case '/f':
         return fs.readFile(__filename, t);
+      case '/ok':
+        return res.end('ok');
       default:
         t();
     }
@@ -66,6 +80,10 @@ test('nextTick', function(t) {
 
 test('readFile', function(t) {
   req('f', t);
+});
+
+test('non-error', function(t) {
+  req('ok', t);
 });
 
 test('shutdown', function(t) {
