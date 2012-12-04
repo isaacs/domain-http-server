@@ -17,7 +17,7 @@ function dhs (req, res, opt, next) {
       d.exit();
 
     if (opt.close)
-      res.server.close();
+      res.socket.server.close();
 
     if (typeof res.error === 'function')
       res.error(e);
