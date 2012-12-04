@@ -8,6 +8,9 @@ function dhs (req, res, opt, next) {
   if (!opt)
     opt = {};
 
+  if (! res.server)
+    res.server = res.connection.server;
+
   var d = domain.create();
   d.add(req);
   d.add(res);
