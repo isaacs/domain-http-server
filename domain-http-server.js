@@ -8,9 +8,6 @@ function dhs (req, res, opt, next) {
   if (!opt)
     opt = {};
 
-  if (! res.server)
-    res.server = res.connection.server;
-
   var d = domain.create();
   d.add(req);
   d.add(res);
@@ -20,7 +17,7 @@ function dhs (req, res, opt, next) {
       d.exit();
 
     if (opt.close)
-      res.server.close();
+      res.socket.server.close();
 
     if (typeof res.error === 'function')
       res.error(e);
