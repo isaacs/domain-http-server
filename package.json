@@ -1,6 +1,6 @@
 {
   "name": "domain-http-server",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "A module for attaching domains to request and response objects",
   "main": "domain-http-server.js",
   "directories": {
